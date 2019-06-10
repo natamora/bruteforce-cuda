@@ -11,8 +11,9 @@
 
 //#define BENCHMARK
 #define ARG_COUNT 4
-#define ALPHABET_COUNT 75
-#define ALPHABET_START 48
+//#define ALPHABET_COUNT 75
+#define ALPHABET_COUNT 11
+#define ALPHABET_START 47
 
 using namespace std;
 
@@ -140,7 +141,7 @@ __global__ void addKernel(char* hashPwd, int* hashLength, bool* stopGlobal)
 		if (my_strcpm(rotatedPassword, hashPwd, *hashLength))
 		{
 			stop[0] = true;
-			printf("succes: %s \n", sampleWord);
+			printf("succes: %s block: %d thread: %d threadcount: %d offset: %d offsetWord: %s combinationCount: %d\n", sampleWord, blockIdx.x, threadIdx.x, threadCount, offset, sampleWord, combinationCount);
 		}
 		free(rotatedPassword);
 		free(sampleWord);
@@ -149,7 +150,7 @@ __global__ void addKernel(char* hashPwd, int* hashLength, bool* stopGlobal)
 	__syncthreads();
 	if (threadIdx.x == 0 && threadIdx.y == 0 && threadIdx.z == 0)
 	{
-		printf("blok: %d nic nie znalazl\n", blockIdx.x);
+		//printf("blok: %d nic nie znalazl\n", blockIdx.x);
 	}
 }
 
@@ -219,7 +220,10 @@ cudaError_t bruteForceWithCuda(char* hostHash, int blockCount, int threadCount)
 	HANDLE_ERROR(cudaEventRecord(start, 0));
 
 	/*addKernel <<<blockCount, threadCount/ blockCount >>> (devHash, devHashLength, stopGlobal);*/
-	addKernel <<<block_count, block_count*256 / block_count >>> (devHash, devHashLength, stopGlobal);
+
+	addKernel <<<block_count, block_count * 256 / block_count >>> (devHash, devHashLength, stopGlobal);
+
+	
 	HANDLE_ERROR(cudaGetLastError());
 
 	HANDLE_ERROR(cudaDeviceSynchronize());
@@ -228,7 +232,7 @@ cudaError_t bruteForceWithCuda(char* hostHash, int blockCount, int threadCount)
 	float   elapsedTime;
 	HANDLE_ERROR(cudaEventElapsedTime(&elapsedTime,
 		start, stop1));
-	printf("Czas generowania:  %3.1f ms\n", elapsedTime);
+	printf("Czas generowania:  %3.1f ms ilosc blokow: %d\n", elapsedTime, block_count);
 
 	HANDLE_ERROR(cudaEventDestroy(start));
 	HANDLE_ERROR(cudaEventDestroy(stop1));
