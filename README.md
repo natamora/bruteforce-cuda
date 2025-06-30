@@ -1,22 +1,25 @@
-## Zastosowanie metody brute force przeciwko wybranej metodzie szyfrowania
-W ramach przedmiotu **Systemy równoległe i rozproszone** zrealizowano projekt mający na celu zastosowanie metody brute force przeciwko wybranej metodzie szyfrowania z wykorzystaniem architektury CUDA.
+## Brute Force Method Applied to a Selected Encryption Method
 
-### Cel Projektu
+This project was completed as part of the course **Parallel and Distributed Systems** and focused on applying the brute force method against a chosen encryption algorithm using CUDA architecture.
 
-- **Przyśpieszenie Kodów Równoległych**: Udowodnienie, że równoległe wykonywanie kodu przy użyciu architektury CUDA może znacząco przyspieszyć działanie programu.
-- **Analiza Efektywności**: Przedstawienie, jak zmienia się efektywność i przyśpieszenie algorytmu brute force w zależności od liczby wątków wykorzystywanych w obliczeniach.
+### Project Goal
 
-### Podsumowanie
+- **Speeding Up Parallel Code**: To demonstrate that parallel execution using CUDA architecture can significantly accelerate program performance.  
+- **Efficiency Analysis**: To show how the efficiency and acceleration of the brute force algorithm change depending on the number of threads used in computations.
 
-Wraz ze zwiększaniem liczby wątków maleje czas znajdowania haseł oraz wzrasta przyśpieszenie. Efektywność, po początkowym wzroście, zaczyna maleć. Zgadza się to z prawem Amdahla, które mówi, że zwiększenie szybkości wykonywania programu w obliczeniach równoległych jest ograniczane przez czas potrzebny na uruchamianie nowych wątków i przydzielanie im zasobów.
+### Summary
 
-Eksperymenty opisane w niniejszym raporcie potwierdzają, że technologia CUDA pozwala na bardzo wydajne wykorzystanie mocy obliczeniowej procesorów graficznych. Kod równoległy może znacząco przyspieszyć czasochłonne obliczenia.
+Increasing the number of threads reduces the time required to find passwords and increases speedup. However, after an initial increase, efficiency begins to decline. This aligns with Amdahl’s law, which states that the speedup of a parallel program is limited by the time needed to launch new threads and allocate resources.
 
-### Raport
-Szczegółowy raport z projektu jest dostępny pod poniższym linkiem:
+The experiments described in this report confirm that CUDA technology allows very efficient use of GPU computing power. Parallel code can significantly speed up time-consuming calculations.
 
-[Raport z projektu](https://drive.google.com/file/d/1pRkzPdHJFGKMZTuMJNH2eQvNTTWAozNU/view?usp=sharing)
+### Report
 
-## 
-All rights reserved
+The detailed project report is available in Polish at the following link:
+
+[Project Report (in Polish)](https://drive.google.com/file/d/1pRkzPdHJFGKMZTuMJNH2eQvNTTWAozNU/view?usp=sharing)
+
+---
+
+All rights reserved  
 Copyright &copy; Katarzyna Morawska 2019
